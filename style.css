@@ -1,0 +1,13 @@
+.gameBody {
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    max-width: 400px;
+}

@@ -4,23 +4,29 @@
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
+<div class="gameBody">
     <div class="introduction">
         <h1>Lets learn some Latvian</h1>
         <h5>Choose the right option which decribes object you can see in picture down below:</h5>
+        <h3>Your score: <span id="score">0</span></h3>
     </div>
+    <button id="gameStarter">Start game</button>
+    <div class="hidden" id="optionSection">
     <div class="word-image">
-        <p class="image-descriptin">Word in english</p>
+        <h3 class="image-descriptin">Choose the right word in Latvian</h3>
         <img src="/images/here-3792307_640.png" alt="empty image">
-        <button>Next</button>
+        
     </div>
-    <class="option-buttons">
-        <button >Option 1</button>
-        <button>Option 2</button>
-        <button>Option 3</button>
-        <button>Option 4</button>
+    <div  id="option-buttons">
+        <button id="option1">Option 1</button>
+        <button id="option2">Option 2</button>
+        <button id="option3">Option 3</button>
+        <button id="option4">Option 4</button>
         <p id="answer"></p>
 
     </div>
+</div>
+</div>
 
 
 
