@@ -12,6 +12,12 @@ img {
     max-width: 400px;
 }
 
-.hidden2 {
-    display: none;
+
+
+.right {
+    background-color: goldenrod;
+}
+
+.wrong {
+    background-color: palevioletred;
 }
