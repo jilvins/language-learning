@@ -4,6 +4,19 @@ let begginingScore = 0
 const score = document.getElementById('score')
 const possibleWords = document.getElementById('option-buttons')
 let gameStarter = document.getElementById('gameStarter')
+let messageCorrect = document.getElementById('correct')
+
+let questions = []
+fetch('words.json')
+.then((res) => {
+    return res.json();
+})
+.then((loadedQuestions) => {
+    questions = loadedQuestions;
+})
+.catch((err) => {
+    console.error(err);
+});
 
 
 
@@ -13,14 +26,15 @@ gameStarter.addEventListener('click', function () {
     hiddenElements.classList.remove('hidden')
     shuffledQuestions = questions.sort(() => Math.random() - 0.5)
     currentQuestionIndex = 0
-    chooseNextWord()
-
-    
-    
+    chooseNextWord()   
 })
 
 nextButton.addEventListener('click', () => {
-    document.querySelector('img').classList.add('hidden')
+   
+    let y = currentPicture.getElementsByClassName("wordImg");
+    for (let i = 0; i < y.length; i++) {
+    y[i].classList.add('hidden')
+}
     currentQuestionIndex++
     chooseNextWord ()
 
@@ -33,11 +47,12 @@ function chooseNextWord () {
     showQuestion(shuffledQuestions[currentQuestionIndex])   
 }
 
-function showQuestion(picture) {
+function showQuestion(questions) {
     const imgElement = document.createElement('img')
-    imgElement.src = picture.url
+    imgElement.classList.add('wordImg') 
+    imgElement.src = questions.image
     currentPicture.append(imgElement)
-    picture.options.forEach(text => {
+    questions.options.forEach(text => {
         const button = document.createElement('button')
         button.innerText = text.answer
         button.classList.add('wordButton')
@@ -53,9 +68,11 @@ function showQuestion(picture) {
 function resetState () {
 clearStatusClass(document.body)
  nextButton.classList.add('hidden')
+ messageCorrect.innerHTML = ''
  while (possibleWords.firstChild) {
      possibleWords.removeChild(possibleWords.firstChild)
  }
+
 }
 
 function chooseAnswer (e) {
@@ -65,23 +82,26 @@ function chooseAnswer (e) {
     Array.from(possibleWords.children).forEach(button =>{
         setStatusClass(button, button.dataset.right)   
     })
-    if(shuffledQuestions.length > currentQuestionIndex + 1)
-    
-    begginingScore++
-    score.textContent = begginingScore
-    let messageCorrect = document.getElementById('correct')
-
-    let paragraphElement = document.createElement('p')
-    paragraphElement.innerHTML = 'You are right!!!'
-    messageCorrect.append(paragraphElement)                                 //Why this is not working?
+    if(shuffledQuestions.length > currentQuestionIndex + 1) {
+       
         nextButton.classList.remove('hidden')
+    } else {
+        nextButton.classList.add('hidden')
+    }
+    console.log(right)
+    
 }
+
 function setStatusClass (element, right) {
     clearStatusClass(element)
     if (right) {
         element.classList.add('right')
-    } else {
+        begginingScore++
+        score.textContent = begginingScore
+        messageCorrect.innerHTML = 'You are right!!!'
+    } else  {
         element.classList.add('wrong')
+        messageCorrect.innerHTML = 'Wrong, try again'
     }
 }
 
@@ -91,72 +111,11 @@ function  clearStatusClass(element) {
 }
 
 
-/*function nextLevel () {
- document.getElementById('correct').innerText = 'You are right!!!'
- begginingScore++
- score.textContent = begginingScore
- nextButton.classList.remove('hidden')
-}*/
 
 
 
 
 
-const questions = [
-    {
-        english: 'cat',
-        latvian: 'kaķis',
-        url: '/images/cat-2083492_1280.jpg',
-        options: [  {answer: 'kaķis', right: true}, 
-                    {answer:'kalvis', right: false},    
-                    {answer: 'vāvere', right: false}, 
-                    {answer: 'vanags', right: false}
-                ],
-    
-            },
-    {
-        english: 'dog',
-        latvian: 'suns',
-        url: '/images/puppy-1903313_1280.jpg',
-        options: [  {answer:'suns', right: true},
-                    {answer:'sūna', right: false},
-                    {answer:'purns', right: false},
-                    {answer:'purvs', right: false}
-        ]
-    },
-     {
-        english: 'bread',
-        latvian: 'maize',
-        url: '/images/bread-1510155_1280.jpg',
-        options: [  {answer:'maize', right: true},
-                    {answer:'maiss', right: false},
-                    {answer:'balva', right: false},
-                    {answer:'baļķis', right: false}
-                ]
-    },
-    
-    {
-        english: 'water',
-        latvian: 'ūdens',
-        url: '/images/drip-921067_1280.jpg',
-        options: [  {answer:'ūdens', right: true}, 
-                    {answer:'ūdrs', right: false}, 
-                    {answer:'ābols', right: false}, 
-                    {answer:'āzis', right: false}
-                ]
-    },
-    
-     {
-        english: 'house',
-        latvian: 'māja',
-        url: '/images/architecture-1836070_1280.jpg',
-        options: [  {answer:'māja', right: true}, 
-                    {answer:'mākonis', right: false},
-                    {answer:'roka', right: false}, 
-                    {answer:'ronis', right: false}
-                ]
-     }
-    ]
 
 
 

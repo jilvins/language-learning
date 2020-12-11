@@ -15,9 +15,9 @@ img {
 
 
 .right {
-    background-color: goldenrod;
+    color: goldenrod;
 }
 
 .wrong {
-    background-color: palevioletred;
+    color: palevioletred;
 }
