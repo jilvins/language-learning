@@ -5,6 +5,7 @@ const score = document.getElementById('score')
 const possibleWords = document.getElementById('option-buttons')
 let gameStarter = document.getElementById('gameStarter')
 let messageCorrect = document.getElementById('correct')
+let theright
 
 let questions = []
 fetch('words.json')
@@ -44,21 +45,23 @@ let shuffledQuestions, currentQuestionIndex
 
 function chooseNextWord () {
     resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])   
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+      
 }
 
 function showQuestion(questions) {
     const imgElement = document.createElement('img')
     imgElement.classList.add('wordImg') 
     imgElement.src = questions.image
+    
+    theright = questions.latvian
+    
+    
     currentPicture.append(imgElement)
     questions.options.forEach(text => {
         const button = document.createElement('button')
         button.innerText = text.answer
         button.classList.add('wordButton')
-        if (text.right) {
-            button.dataset.right = text.right
-        }
         button.addEventListener('click', chooseAnswer)
         possibleWords.appendChild(button)
     })
@@ -66,7 +69,6 @@ function showQuestion(questions) {
 
 
 function resetState () {
-clearStatusClass(document.body)
  nextButton.classList.add('hidden')
  messageCorrect.innerHTML = ''
  while (possibleWords.firstChild) {
@@ -75,40 +77,33 @@ clearStatusClass(document.body)
 
 }
 
-function chooseAnswer (e) {
-    const selectedButton = e.target
-    const right = selectedButton.dataset.right
-    setStatusClass(document.body, right)
-    Array.from(possibleWords.children).forEach(button =>{
-        setStatusClass(button, button.dataset.right)   
-    })
-    if(shuffledQuestions.length > currentQuestionIndex + 1) {
-       
-        nextButton.classList.remove('hidden')
-    } else {
-        nextButton.classList.add('hidden')
-    }
-    console.log(right)
-    
+function theRightAnswer (questions) {
+    const theright = questions.latvian
+    theright.innerHTML
 }
 
-function setStatusClass (element, right) {
-    clearStatusClass(element)
-    if (right) {
-        element.classList.add('right')
+
+
+function chooseAnswer (e) {
+    const selectedButton = e.target.innerHTML
+    
+    if (selectedButton === theright) {
         begginingScore++
         score.textContent = begginingScore
-        messageCorrect.innerHTML = 'You are right!!!'
-    } else  {
-        element.classList.add('wrong')
+        messageCorrect.innerHTML = 'You are right!!! :)'
+        if(shuffledQuestions.length > currentQuestionIndex + 1) {
+            nextButton.classList.remove('hidden') }
+            else {
+                console.log('visi jautājumi atbildēti')
+            }
+    } else {
         messageCorrect.innerHTML = 'Wrong, try again'
     }
+
 }
 
-function  clearStatusClass(element) {
-    element.classList.remove('right')
-    element.classList.remove('wrong')
-}
+
+
 
 
 
