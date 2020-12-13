@@ -1,9 +1,38 @@
-.gameBody {
-    margin: 0 auto;
+body {
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif; 
+    font-size: 1rem;
+    color: #404040;
     text-align: center;
-    
+    background-color: aquamarine;
 }
 
+
+h1 {
+    font-size: 2.25rem;
+    font-weight: 300;
+    color: #fff;
+    margin: 0;
+}
+
+img {
+    border-radius: 25px;;
+}
+.gameBody  {
+    
+    background-size: cover;
+    background-color: #404040;
+    background-position: center;
+    padding: 0 .5em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 50vh;
+}
+
+.introduction {
+    background-color: burlywood;
+}
 .hidden {
     display: none;
 }
@@ -16,8 +45,24 @@ img {
 
 .right {
     color: goldenrod;
+    background-color: goldenrod;
 }
 
 .wrong {
     color: palevioletred;
+    background-color: palevioletred;
+}
+
+.wordButton {
+    background-image: linear-gradient(to left, #FF713B, #FFA51D);
+    color: white;
+    transform: scale(1);
+    transition: transform 250ms;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.wordButton:hover,
+.wordButton:focus {
+    transform: scale(1.1);
 }

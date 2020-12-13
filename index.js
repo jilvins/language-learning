@@ -1,11 +1,11 @@
-let currentPicture = document.getElementById('wordPicture')
-let nextButton = document.querySelector(".nextButton")
-let begginingScore = 0
+const currentPicture = document.getElementById('wordPicture')
+const nextButton = document.querySelector(".nextButton")
 const score = document.getElementById('score')
 const possibleWords = document.getElementById('option-buttons')
-let gameStarter = document.getElementById('gameStarter')
-let messageCorrect = document.getElementById('correct')
-let theright
+const gameStarter = document.getElementById('gameStarter')
+const messageCorrect = document.getElementById('correct')
+let shuffledQuestions, currentQuestionIndex, theright
+let begginingScore = 0
 
 let questions = []
 fetch('words.json')
@@ -41,7 +41,7 @@ nextButton.addEventListener('click', () => {
 
 })
 
-let shuffledQuestions, currentQuestionIndex
+
 
 function chooseNextWord () {
     resetState()
@@ -53,10 +53,7 @@ function showQuestion(questions) {
     const imgElement = document.createElement('img')
     imgElement.classList.add('wordImg') 
     imgElement.src = questions.image
-    
     theright = questions.latvian
-    
-    
     currentPicture.append(imgElement)
     questions.options.forEach(text => {
         const button = document.createElement('button')
@@ -77,17 +74,13 @@ function resetState () {
 
 }
 
-function theRightAnswer (questions) {
-    const theright = questions.latvian
-    theright.innerHTML
-}
-
-
 
 function chooseAnswer (e) {
-    const selectedButton = e.target.innerHTML
+    const selectedAnswer = e.target.innerHTML
+    const selectedButton = e.target
     
-    if (selectedButton === theright) {
+    if (selectedAnswer === theright) {
+        selectedButton.classList.add('right')
         begginingScore++
         score.textContent = begginingScore
         messageCorrect.innerHTML = 'You are right!!! :)'
@@ -97,7 +90,9 @@ function chooseAnswer (e) {
                 console.log('visi jautājumi atbildēti')
             }
     } else {
+        selectedButton.classList.add('wrong')
         messageCorrect.innerHTML = 'Wrong, try again'
+        begginingScore -= 0.5
     }
 
 }
