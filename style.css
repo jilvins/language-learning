@@ -15,6 +15,13 @@ h1 {
     margin: 0;
 }
 
+h5 {
+    font-size: 1.7rem;
+    font-weight: 300;
+    color: #fff;
+    margin: 0;
+}
+
 img {
     border-radius: 25px;;
 }
@@ -53,7 +60,7 @@ img {
     background-color: palevioletred;
 }
 
-.wordButton {
+.wordButton, .nextButton {
     background-image: linear-gradient(to left, #FF713B, #FFA51D);
     color: white;
     transform: scale(1);
@@ -65,4 +72,8 @@ img {
 .wordButton:hover,
 .wordButton:focus {
     transform: scale(1.1);
+}
+
+.message {
+    color: white;
 }

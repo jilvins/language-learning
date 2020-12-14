@@ -3,32 +3,41 @@ const nextButton = document.querySelector(".nextButton")
 const score = document.getElementById('score')
 const possibleWords = document.getElementById('option-buttons')
 const gameStarter = document.getElementById('gameStarter')
+const nextLevel = document.getElementById('gameStarter1')
 const messageCorrect = document.getElementById('correct')
 let shuffledQuestions, currentQuestionIndex, theright
 let begginingScore = 0
+let currentQuestionSet = 'words.json'
 
 let questions = []
-fetch('words.json')
-.then((res) => {
-    return res.json();
-})
-.then((loadedQuestions) => {
-    questions = loadedQuestions;
-})
-.catch((err) => {
-    console.error(err);
-});
+
+fetch(currentQuestionSet )
+.then((res) => {return res.json();})
+.then((loadedQuestions) => {questions = loadedQuestions;})
+.catch((err) => {console.error(err);});
 
 
+console.log(currentQuestionSet)
+gameStarter.addEventListener('click', function gameStart () {
+    currentQuestionSet = 'nextLevel.json'
+    fetch(currentQuestionSet )
+.then((res) => {return res.json();})
+.then((loadedQuestions) => {questions = loadedQuestions;})
+.catch((err) => {console.error(err);});
 
-gameStarter.addEventListener('click', function () {
+    console.log(questions)
     let hiddenElements = document.querySelector(".hidden")
     gameStarter.classList.add('hidden')
+    nextLevel.classList.add('hidden')
     hiddenElements.classList.remove('hidden')
     shuffledQuestions = questions.sort(() => Math.random() - 0.5)
     currentQuestionIndex = 0
-    chooseNextWord()   
+    chooseNextWord() 
+    
+    
 })
+
+
 
 nextButton.addEventListener('click', () => {
    
@@ -43,11 +52,13 @@ nextButton.addEventListener('click', () => {
 
 
 
+
 function chooseNextWord () {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
       
 }
+
 
 function showQuestion(questions) {
     const imgElement = document.createElement('img')
