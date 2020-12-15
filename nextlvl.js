@@ -7,47 +7,27 @@ const messageCorrect = document.getElementById('correct')
 const begining = document.getElementById('begining')
 let shuffledQuestions, currentQuestionIndex, theright
 let begginingScore = 0
-let currentQuestionSet = 'words.json'
-
-
-/*
-function createStudyBoard(questionList) {
-    let newStudyBoard = questionList.map( list => {
-        return `<div class='wordButton'>${questionList.value}</div>`
-    }).join('')
-    console.log(newStudyBoard)
-    document.body.innerHTML = `<div>${newStudyBoard}</div>`
-}
-
-async function getData() {
-    let response = await fetch(currentQuestionSet)
-    let questionss = await response.json()
-    let questionList = questionss.options
-
-    createStudyBoard(questionList)
-}
-
-getData()
-
-*/
+let currentQuestionSet = 'nextLevel.json'
 
 let questions = []
+
 fetch(currentQuestionSet )
-.then((res) => {return res.json() })
+.then((res) => {return res.json();})
 .then((loadedQuestions) => {questions = loadedQuestions;})
-.catch((err) => {console.error(err) });
+.catch((err) => {console.error(err);});
 
 gameStarter.addEventListener('click', function gameStart () {
+   
     let hiddenElements = document.querySelector(".hidden")
     gameStarter.classList.add('hidden')
     hiddenElements.classList.remove('hidden')
-    document.getElementById('level2').classList.add('hidden')
     shuffledQuestions = questions.sort(() => Math.random() - 0.5)
     currentQuestionIndex = 0
     chooseNextWord() 
     
     
 })
+
 
 
 nextButton.addEventListener('click', () => {
@@ -60,6 +40,8 @@ nextButton.addEventListener('click', () => {
     chooseNextWord ()
 
 })
+
+
 
 
 function chooseNextWord () {
@@ -116,16 +98,3 @@ function chooseAnswer (e) {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

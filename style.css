@@ -60,13 +60,29 @@ img {
     background-color: palevioletred;
 }
 
-.wordButton, .nextButton {
+.wordButton, .nextButton, .game-btn {
     background-image: linear-gradient(to left, #FF713B, #FFA51D);
     color: white;
     transform: scale(1);
     transition: transform 250ms;
     padding: 20px;
     border-radius: 25px;
+}
+a {
+    background-image: linear-gradient(to left, #FF713B, #FFA51D);
+    color: white;
+    transform: scale(1);
+    transition: transform 250ms;
+    padding: 20px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+a .hidden {
+    display: none;
+}
+
+.hidden {
+    display: none;
 }
 
 .wordButton:hover,
