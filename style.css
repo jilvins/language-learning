@@ -5,20 +5,21 @@ body {
     color: #404040;
     text-align: center;
     background-color: aquamarine;
+    
 }
 
 
 h1 {
     font-size: 2.25rem;
-    font-weight: 300;
-    color: #fff;
+    font-weight: 700;
+    color: darkred;
     margin: 0;
 }
 
 h5 {
     font-size: 1.7rem;
     font-weight: 300;
-    color: #fff;
+    color: darkred;
     margin: 0;
 }
 
@@ -30,15 +31,19 @@ img {
     background-size: cover;
     background-color: #404040;
     background-position: center;
-    padding: 0 .5em 2em;
+    padding: 0 .0 2em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 50vh;
+    min-height: 80vh;
+    
 }
+
 
 .introduction {
     background-color: burlywood;
+    border: white solid 1px;
+    
 }
 .hidden {
     display: none;
@@ -46,6 +51,7 @@ img {
 
 img {
     max-width: 400px;
+    max-height: 300px;
 }
 
 
@@ -60,22 +66,27 @@ img {
     background-color: palevioletred;
 }
 
-.wordButton, .nextButton, .game-btn {
+.wordButton, .nextButton, .game-btn, #gameStarter {
     background-image: linear-gradient(to left, #FF713B, #FFA51D);
-    color: white;
+    color: #404040;
     transform: scale(1);
     transition: transform 250ms;
     padding: 20px;
     border-radius: 25px;
+    text-align: center;
+    margin: auto;
+    font-size: 18px;
+    font-weight: 700;
 }
 a {
     background-image: linear-gradient(to left, #FF713B, #FFA51D);
-    color: white;
+    color: #404040;
     transform: scale(1);
     transition: transform 250ms;
     padding: 20px;
     border-radius: 25px;
     text-decoration: none;
+    
 }
 a .hidden {
     display: none;
@@ -92,4 +103,11 @@ a .hidden {
 
 .message {
     color: white;
+}
+
+.level2, .level3{
+    text-align: center;
+    margin: auto;
+    font-size: 18px;
+    font-weight: 700;
 }

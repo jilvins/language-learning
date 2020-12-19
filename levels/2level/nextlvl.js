@@ -7,7 +7,7 @@ const messageCorrect = document.getElementById('correct')
 const begining = document.getElementById('begining')
 let shuffledQuestions, currentQuestionIndex, theright
 let begginingScore = 0
-let currentQuestionSet = 'nextLevel.json'
+let currentQuestionSet = '/levels/2level/nextLevel.json'
 
 let questions = []
 
@@ -15,6 +15,8 @@ fetch(currentQuestionSet )
 .then((res) => {return res.json();})
 .then((loadedQuestions) => {questions = loadedQuestions;})
 .catch((err) => {console.error(err);});
+
+
 
 gameStarter.addEventListener('click', function gameStart () {
    
@@ -27,7 +29,6 @@ gameStarter.addEventListener('click', function gameStart () {
     
     
 })
-
 
 
 nextButton.addEventListener('click', () => {

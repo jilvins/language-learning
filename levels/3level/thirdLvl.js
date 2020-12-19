@@ -7,27 +7,27 @@ const messageCorrect = document.getElementById('correct')
 const begining = document.getElementById('begining')
 let shuffledQuestions, currentQuestionIndex, theright
 let begginingScore = 0
-let currentQuestionSet = 'words.json'
-
+let currentQuestionSet = '/levels/3level/thirdLvl.json'
 
 let questions = []
+
 fetch(currentQuestionSet )
-.then((res) => {return res.json() })
+.then((res) => {return res.json();})
 .then((loadedQuestions) => {questions = loadedQuestions;})
-.catch((err) => {console.error(err) });
+.catch((err) => {console.error(err);});
 
 gameStarter.addEventListener('click', function gameStart () {
+   
     let hiddenElements = document.querySelector(".hidden")
     gameStarter.classList.add('hidden')
     hiddenElements.classList.remove('hidden')
-    document.querySelector('.level2').classList.add('hidden')
-    document.querySelector('.level3').classList.add('hidden')
     shuffledQuestions = questions.sort(() => Math.random() - 0.5)
     currentQuestionIndex = 0
     chooseNextWord() 
     
     
 })
+
 
 
 nextButton.addEventListener('click', () => {
@@ -40,6 +40,8 @@ nextButton.addEventListener('click', () => {
     chooseNextWord ()
 
 })
+
+
 
 
 function chooseNextWord () {
@@ -96,16 +98,3 @@ function chooseAnswer (e) {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
